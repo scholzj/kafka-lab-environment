@@ -1,0 +1,42 @@
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaUser
+metadata:
+  name: $USERNAME
+  labels:
+    strimzi.io/cluster: $CLUSTER_NAME
+  namespace: $CLUSTER_NAMESPACE
+spec:
+  authentication:
+    type: $AUTHENTICATION
+  authorization:
+    type: simple
+    acls:
+      - resource:
+          type: topic
+          name: $USERNAME
+          patternType: prefix
+        operation: Read
+      - resource:
+          type: topic
+          name: $USERNAME
+          patternType: prefix
+        operation: Write
+      - resource:
+          type: topic
+          name: $USERNAME
+          patternType: prefix
+        operation: Create
+      - resource:
+          type: topic
+          name: $USERNAME
+          patternType: prefix
+        operation: Describe
+      - resource:
+          type: group
+          name: $USERNAME
+          patternType: prefix
+        operation: Read
+  quotas:
+    producerByteRate: 1048576
+    consumerByteRate: 1048576
+    requestPercentage: 10
