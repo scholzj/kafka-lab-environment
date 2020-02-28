@@ -28,6 +28,8 @@ To create the lab environment, run the `./deploy.sh` script.
 ## Customizations
 
 You can customize this tooling by:
+* Drop in your own version of Strimzi or AMQ Streams depending on your lab (replace the `01-kafka/strimzi-cluster-operator.yaml` file)
+* Fine-tune the Kafka cluster in `01-kafka/kafka.ymal` to correspond to what you expect the users to do (the current version is designed for my Minishift, so resources might need some tuning ;-))
 * Adding more resources to the `02-user-env-template` directory
 * Modifying the environment variables on the beginning of the `deploy.sh` script
     * `CLUSTER_NAMESPACE` defines the namespace where the KAfka cluster will be deployed
